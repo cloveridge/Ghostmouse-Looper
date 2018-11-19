@@ -46,7 +46,7 @@ namespace Ghostmouse_Looper
 
             long remIters = 0;
             int loopLen = 0;
-            string ghostKey = ghostMouseKeyTextbox.Text;
+            string ghostKey = "{" + ghostMouseKeyTextbox.Text + "}";
             bool errorsExist = false;
             string errMessage = "";
             long secsLeft = 0;
