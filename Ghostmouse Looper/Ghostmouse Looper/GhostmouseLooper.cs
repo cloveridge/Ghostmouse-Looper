@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,17 @@ namespace Ghostmouse_Looper
 {
     public partial class GhostmouseLooper : Form
     {
+        public static extern int SetForegroundWindow(IntPtr hWnd);
+
+        static void GhostMouse(string ghostkey)
+        {
+            while (true)
+            {
+                Process ghostmouse = Process.GetProcessesByName("GhostMouse")[0];
+                SetForegroundWindow(ghostmouse.MainWindowHandle);
+                SendKeys.SendWait("{" + ghostkey + "}");
+            }
+        }
 
         // Backing field for making sure the program exits successfully
         bool _still_running;
@@ -184,7 +196,7 @@ namespace Ghostmouse_Looper
                         completionTimeLabel.Text = DateTime.Now.Add(addTime).ToString("hh:mm");
                         remainingIterationsLabel.Text = remIters.ToString();
 
-                        SendKeys.Send(ghostKey);
+                        GhostMouse(ghostKey);
 
                         secsLeft = remIters * (long)loopLen;
 
