@@ -103,7 +103,7 @@
             this.ghostMouseKeyTextbox.Name = "ghostMouseKeyTextbox";
             this.ghostMouseKeyTextbox.Size = new System.Drawing.Size(65, 20);
             this.ghostMouseKeyTextbox.TabIndex = 1;
-            this.ghostMouseKeyTextbox.Text = "F6";
+            this.ghostMouseKeyTextbox.Text = "";
             this.ghostMouseKeyTextbox.TextChanged += new System.EventHandler(this.ghostMouseKeyTextbox_TextChanged);
             // 
             // loopLengthTextbox
@@ -219,6 +219,7 @@
             this.remainingIterationsLabel.AutoSize = true;
             this.remainingIterationsLabel.Location = new System.Drawing.Point(119, 152);
             this.remainingIterationsLabel.Name = "remainingIterationsLabel";
+            this.remainingIterationsLabel.Text = "";
             this.remainingIterationsLabel.Size = new System.Drawing.Size(0, 13);
             this.remainingIterationsLabel.TabIndex = 18;
             // 
@@ -227,6 +228,7 @@
             this.remainingTimeLabel.AutoSize = true;
             this.remainingTimeLabel.Location = new System.Drawing.Point(119, 167);
             this.remainingTimeLabel.Name = "remainingTimeLabel";
+            this.remainingTimeLabel.Text = "";
             this.remainingTimeLabel.Size = new System.Drawing.Size(0, 13);
             this.remainingTimeLabel.TabIndex = 19;
             // 
@@ -235,6 +237,7 @@
             this.completionTimeLabel.AutoSize = true;
             this.completionTimeLabel.Location = new System.Drawing.Point(119, 182);
             this.completionTimeLabel.Name = "completionTimeLabel";
+            this.completionTimeLabel.Text = "";
             this.completionTimeLabel.Size = new System.Drawing.Size(0, 13);
             this.completionTimeLabel.TabIndex = 21;
             // 
