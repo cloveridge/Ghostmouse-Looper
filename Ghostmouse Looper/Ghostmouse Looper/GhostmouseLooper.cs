@@ -15,6 +15,9 @@ namespace Ghostmouse_Looper
     public partial class GhostmouseLooper : Form
     {
 
+        // Backing field for making sure the program exits successfully
+        bool _still_running;
+
         public GhostmouseLooper()
         {
             InitializeComponent();
@@ -45,6 +48,7 @@ namespace Ghostmouse_Looper
             const int MAX_LENGTH = 3600;
 
             long remIters = 0;
+            long initIters = 0;
             int loopLen = 0;
             string ghostKey = "{" + ghostMouseKeyTextbox.Text + "}";
             bool errorsExist = false;
@@ -56,6 +60,13 @@ namespace Ghostmouse_Looper
             {
                 loopButton.Text = "Loop";
                 this.loopButton.BackColor = System.Drawing.Color.PaleGreen;
+
+                // Set fonts back to default
+                completionTimeLabel.Font = new Font(completionTimeLabel.Font, FontStyle.Regular);
+                remainingIterationsLabel.Font = new Font(remainingIterationsLabel.Font, FontStyle.Regular);
+                remainingTimeLabel.Font = new Font(remainingTimeLabel.Font, FontStyle.Regular);
+
+                _still_running = false;
             }
             else
             {
@@ -87,7 +98,7 @@ namespace Ghostmouse_Looper
                 //Check for the number of loops. must be between 1 - MAX_LOOPS.
                 if (long.TryParse(loopCountTextbox.Text, out remIters) && remIters > 0)
                 {
-                    if (loopLen > MAX_LOOPS)
+                    if (remIters > MAX_LOOPS)
                     {
                         if (errorsExist)
                         {
@@ -95,6 +106,10 @@ namespace Ghostmouse_Looper
                         }
                         errMessage += "The maximum number of loops is " + MAX_LOOPS.ToString() + ".";
                         errorsExist = true;
+                    }
+                    else
+                    {
+                        initIters = remIters;
                     }
                 }
                 else
@@ -127,10 +142,18 @@ namespace Ghostmouse_Looper
                 else
                 {
 
+                    _still_running = true;
+
                     loopButton.Text = "Stop";
                     this.loopButton.BackColor = System.Drawing.Color.MistyRose;
 
                     completionTimeLabel.Text = "";
+
+                    // Make fonts bold
+                    completionTimeLabel.Font = new Font(completionTimeLabel.Font, FontStyle.Bold);
+                    remainingIterationsLabel.Font = new Font(remainingIterationsLabel.Font, FontStyle.Bold);
+                    remainingTimeLabel.Font = new Font(remainingTimeLabel.Font, FontStyle.Bold);
+
 
                     while (remIters > 0)
                     {
@@ -138,7 +161,7 @@ namespace Ghostmouse_Looper
                         //Checks to see if the user stopped the loop
                         if (loopButton.Text == "Loop")
                         {
-                            DialogResult dr = MessageBox.Show("Stopped. This will finish the current iteration in progress. Would you like to subtract the completed iterations from the remaining total?","",MessageBoxButtons.YesNo);
+                            DialogResult dr = MessageBox.Show("Stopped. Would you like to subtract the completed iterations from the remaining total?","",MessageBoxButtons.YesNo);
 
                             // Sets the iterations textbox to the remaining iterations so the user can pick right back up where they left off.
                             if(dr == DialogResult.Yes)
@@ -148,7 +171,15 @@ namespace Ghostmouse_Looper
 
                             break;
                         }
+                        else
+                        {
+                            if(!_still_running)
+                            {
+                                break;
+                            }
+                        }
 
+                        // Sets the completion time, the number of iterations remaining, and the countdown
                         TimeSpan addTime = new TimeSpan(0, 0, (int)remIters * loopLen);
                         completionTimeLabel.Text = DateTime.Now.Add(addTime).ToString("hh:mm");
                         remainingIterationsLabel.Text = remIters.ToString();
@@ -157,6 +188,7 @@ namespace Ghostmouse_Looper
 
                         secsLeft = remIters * (long)loopLen;
 
+                        // The actual countdown loop
                         for (int i = loopLen; i >= 0; i--)
                         {
                             Application.DoEvents();
@@ -170,8 +202,17 @@ namespace Ghostmouse_Looper
                         
                     }
 
-                    MessageBox.Show("Finished looping after " + loopCountTextbox.Text + " iterations.");
+                    // Set fonts back to default
+                    completionTimeLabel.Font = new Font(completionTimeLabel.Font, FontStyle.Regular);
+                    remainingIterationsLabel.Font = new Font(remainingIterationsLabel.Font, FontStyle.Regular);
+                    remainingTimeLabel.Font = new Font(remainingTimeLabel.Font, FontStyle.Regular);
 
+                    completionTimeLabel.Text = "";
+                    if (_still_running)
+                    {
+                        MessageBox.Show("Finished looping after " + (initIters - remIters).ToString() + " iterations.");
+                        _still_running = false;
+                    }
                 }
             }
 
@@ -186,7 +227,8 @@ namespace Ghostmouse_Looper
          *******************************************************/
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            _still_running = false;
+            Application.Exit();
         }
 
         /********************************************************
@@ -237,7 +279,7 @@ namespace Ghostmouse_Looper
             }
             catch (Exception exc)
             {
-
+                // Don't bother the user with an error. It's annoying.
             }
 
             //Read the textfile for the last iteration length
@@ -249,7 +291,7 @@ namespace Ghostmouse_Looper
             }
             catch (Exception exc)
             {
-
+                // Don't bother the user with an error. It's annoying.
             }
         }
 

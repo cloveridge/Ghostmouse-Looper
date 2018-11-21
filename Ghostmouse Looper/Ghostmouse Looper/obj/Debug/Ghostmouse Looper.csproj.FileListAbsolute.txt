@@ -8,3 +8,13 @@ D:\C# Projects\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.c
 D:\C# Projects\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.csproj.CoreCompileInputs.cache
 D:\C# Projects\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.exe
 D:\C# Projects\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.pdb
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\bin\Debug\Ghostmouse Looper.exe.config
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\bin\Debug\Ghostmouse Looper.exe
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\bin\Debug\Ghostmouse Looper.pdb
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.csprojAssemblyReference.cache
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse_Looper.GhostmouseLooper.resources
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse_Looper.Properties.Resources.resources
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.csproj.GenerateResource.cache
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.csproj.CoreCompileInputs.cache
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.exe
+D:\C# Projects\Ghostmouse-Looper\Ghostmouse Looper\Ghostmouse Looper\obj\Debug\Ghostmouse Looper.pdb
